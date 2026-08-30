@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido Protegido</title>
+    
+    <!-- 1. Cargamos el script oficial de Google reCAPTCHA -->
+    <script src="https://google.com" async defer></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f9;
+        }
+        .contenedor-captcha {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* 2. El contenido secreto empieza totalmente oculto */
+        #contenido-secreto {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e2f0d9;
+            border: 1px solid #385723;
+            color: #385723;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-captcha" id="bloque-seguridad">
+        <h2>Verificación Requerida</h2>
+        <p>Por favor, demuestra que eres humano para ver el contenido.</p>
+        
+        <!-- 3. El Widget del CAPTCHA -->
+        <!-- NOTA: "data-callback" llama a nuestra función cuando el usuario pasa la prueba -->
+        <div class="g-recaptcha" 
+             data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
+             data-callback="usuarioVerificado"></div>
+    </div>
+
+    <!-- 4. Este es tu contenido oculto -->
+    <div id="contenido-secreto">
+        <h3>🔓 ¡Acceso Concedido!</h3>
+        <p>Este es el contenido simple que estaba oculto para los curiosos.</p>
+    </div>
+
+    <!-- 5. El script que controla la lógica -->
+    <script>
+        function usuarioVerificado() {
+            // Ocultamos el bloque del CAPTCHA
+            document.getElementById('bloque-seguridad').style.display = 'none';
+            
+            // Mostramos el contenido secreto
+            document.getElementById('contenido-secreto').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
